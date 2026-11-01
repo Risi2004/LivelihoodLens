@@ -1,0 +1,126 @@
+# ==========================================
+# Root / Operating System & Editors
+# ==========================================
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# IDEs & Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+
+# ==========================================
+# /backend (Python / FastAPI)
+# ==========================================
+
+# Virtual Environments
+/backend/venv/
+/backend/.venv/
+/backend/env/
+/backend/ENV/
+/backend/env.bak/
+/backend/venv.bak/
+
+# Byte-compiled / cache files
+/backend/**/__pycache__/
+/backend/**/*.py[cod]
+/backend/**/$py.class
+
+# Distribution / Packaging
+/backend/build/
+/backend/develop-eggs/
+/backend/dist/
+/backend/downloads/
+/backend/eggs/
+/backend/.eggs/
+/backend/lib/
+/backend/lib64/
+/backend/parts/
+/backend/sdist/
+/backend/var/
+/backend/wheels/
+/backend/share/python-wheels/
+/backend/*.egg-info/
+/backend/.installed.cfg
+/backend/*.egg
+
+# Testing & Type Checking
+/backend/.pytest_cache/
+/backend/.coverage
+/backend/htmlcov/
+/backend/.tox/
+/backend/.nox/
+/backend/.hypothesis/
+/backend/.mypy_cache/
+/backend/.dmypy.json
+/backend/dmypy.json
+
+# Local Environment Variables & Secrets
+/backend/.env
+/backend/.env.*
+!/backend/.env.example
+
+# Raw Data, Big Datasets & Extracted Files (NEVER commit raw HIES / OSM .pbf files)
+/backend/data/raw/
+/backend/data/**/*.pbf
+/backend/data/**/*.osm
+/backend/**/*.csv.gz
+/backend/**/*.tar.gz
+/backend/**/*.zip
+
+# Logs
+/backend/*.log
+/backend/logs/
+
+
+# ==========================================
+# /frontend (React / Vite)
+# ==========================================
+
+# Dependencies
+/frontend/node_modules/
+/frontend/.pnp
+/frontend/.pnp.js
+
+# Build Outputs
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/build/
+
+# Local Environment & Secrets
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+/frontend/.env
+/frontend/.env.*
+!/frontend/.env.example
+
+# Logs
+/frontend/logs/
+/frontend/*.log
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+/frontend/lerna-debug.log*
+
+# Vite / Testing Cache
+/frontend/.vite/
+/frontend/.eslintcache
+/frontend/.turbo/
+
+.CLAUDE.md
