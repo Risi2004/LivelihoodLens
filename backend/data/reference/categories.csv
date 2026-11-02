@@ -1,0 +1,13 @@
+category_id,label,skills,min_hours,price_inputs,supply_visibility
+prepared_food,Prepared food & takeaway,cooking,20-40,rice|coconut|onion|dhal,normal
+bakery_sweets,Bakery & sweets,cooking,10-20,wheat_flour|sugar|egg,normal
+grocery,Grocery & convenience,retail,40+,rice|sugar|dhal,normal
+fruit_veg,Fruit & vegetables,retail,20-40,carrot|beans|tomato,normal
+fish_meat,Fish & meat,retail,20-40,fish|chicken,normal
+tailoring_clothing,Tailoring & clothing,sewing,10-20,,normal
+beauty_salon,Beauty & salon,beauty,10-20,,normal
+electronics_repair,Phone & electronics repair,electronics_repair,10-20,,normal
+tutoring,Tutoring & classes,tutoring,under10,,low
+handicrafts_gifts,Handicrafts & gifts,handicrafts,under10,,normal
+household_hardware,Hardware & household goods,retail,40+,,normal
+stationery_books,"Stationery, books & printing",retail,20-40,,normal

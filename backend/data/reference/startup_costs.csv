@@ -1,0 +1,13 @@
+category_id,cost_min_lkr,cost_max_lkr,source,notes
+prepared_food,50000,150000,team estimate - verify,cooking equipment and first ingredients
+bakery_sweets,30000,60000,team estimate - verify,oven or home baking setup and first ingredients; range from proposal
+grocery,150000,300000,team estimate - verify,shelving and first stock
+fruit_veg,25000,60000,team estimate - verify,stall or display and first stock
+fish_meat,75000,150000,team estimate - verify,cold storage and first stock
+tailoring_clothing,40000,70000,team estimate - verify,sewing machine materials and basic setup; range from proposal
+beauty_salon,60000,120000,team estimate - verify,chair tools and first products; range from proposal
+electronics_repair,50000,120000,team estimate - verify,repair tools and first spare parts
+tutoring,25000,40000,team estimate - verify,teaching materials and basic seating
+handicrafts_gifts,25000,50000,team estimate - verify,tools and first materials
+household_hardware,150000,400000,team estimate - verify,shelving and first stock
+stationery_books,75000,150000,team estimate - verify,first stock and basic printer

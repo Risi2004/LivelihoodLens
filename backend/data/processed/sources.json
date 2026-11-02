@@ -1,0 +1,15 @@
+{
+  "placeholder": true,
+  "osm": {
+    "snapshot_date": "2026-10-30"
+  },
+  "hies": {
+    "survey_year": 2019
+  },
+  "prices": {
+    "last_date": "2026-11-01"
+  },
+  "population": {
+    "year": 2024
+  }
+}
