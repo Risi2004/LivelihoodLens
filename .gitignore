@@ -123,4 +123,4 @@ Thumbs.db
 /frontend/.eslintcache
 /frontend/.turbo/
 
-.CLAUDE.md
+/docs
