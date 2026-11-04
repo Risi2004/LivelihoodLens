@@ -81,7 +81,7 @@ Hours buckets: `under10` < `10-20` < `20-40` < `40+`. A category is kept if the 
 reference/ (hand-maintained, committed):
 - `categories.csv` — category_id,label,skills,min_hours,price_inputs,supply_visibility  (skills and price_inputs are `|`-separated)
 - `osm_category_map.csv` — osm_key,osm_value,category_id   (e.g. shop,bakery,bakery_sweets ; amenity,fast_food,prepared_food ; craft,tailor,tailoring_clothing)
-- `startup_costs.csv` — category_id,cost_min_lkr,cost_max_lkr,source,notes  (from survey results or public equipment and stock prices; every row names its real source, never invented figures)
+- `startup_costs.csv` — category_id,cost_min_lkr,cost_max_lkr,source,notes  (from survey results or public equipment and stock prices; every row names its source. Rows marked `team estimate - verify` are temporary placeholders and must be replaced with real sources before submission)
 - `hies_item_map.csv` — item_code,item_description,module(food|nonfood),category_id,checked(y/n)
 - `district_neighbours.csv` — district,neighbour  (one row per direction; used for refusal suggestions)
 
