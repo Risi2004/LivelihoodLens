@@ -91,9 +91,12 @@ BASE_PRICES_LKR = {
     "rice": 230, "coconut": 150, "onion": 320, "dhal": 310, "wheat_flour": 190, "sugar": 260,
     "egg": 40, "carrot": 340, "beans": 420, "tomato": 280, "fish": 1400, "chicken": 1150,
 }
-# Linear rise over the last 90 days. 0.18 gives about +15% between the two pressure windows.
-PRICE_RISE = {"wheat_flour": 0.18, "sugar": 0.18}
+# Linear rise over the last PRICE_RISE_DAYS. Ending the rise well inside the baseline window keeps
+# the baseline flat as the files age, so the change stays about +15% until prices go stale.
+PRICE_RISE_DAYS = 60
+PRICE_RISE = {"wheat_flour": 0.17, "sugar": 0.17}
 DEFAULT_PRICE_RISE = 0.01
+MARKET_NOISE = 0.02
 PRICE_NOISE = 0.01
 
 
@@ -180,9 +183,9 @@ def make_prices(last_date, rng):
     for item in price_items():
         rise = PRICE_RISE.get(item, DEFAULT_PRICE_RISE)
         for market in PRICE_MARKETS:
-            market_level = rng.normal(1, 0.02)
+            market_level = rng.normal(1, MARKET_NOISE)
             for days_ago in range(PRICE_HISTORY_DAYS - 1, -1, -1):
-                progress = max(0, 90 - days_ago) / 90
+                progress = max(0, PRICE_RISE_DAYS - days_ago) / PRICE_RISE_DAYS
                 noise = rng.normal(1, PRICE_NOISE)
                 price = BASE_PRICES_LKR[item] * market_level * (1 + rise * progress) * noise
                 rows.append({

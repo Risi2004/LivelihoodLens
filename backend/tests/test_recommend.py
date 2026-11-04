@@ -148,3 +148,19 @@ def test_too_stale_refuses_every_district():
     assert response["failed_rule"] == "stale_data"
     assert response["min_required"] is None
     assert response["suggestions"] == []
+
+
+def test_too_stale_and_poorly_mapped_suggests_nothing():
+    old = {**FRESH_SOURCES, "osm": {"snapshot_date": "2026-08-01"}, "prices": {"last_date": "2026-08-01"}}
+    response = run(district="Monaragala", data=store(old))
+    assert response["failed_rule"] == "per_10k"
+    assert response["suggestions"] == []  # Badulla would refuse too while the data is this old
+
+
+def test_message_and_cost_warning_numbers_come_from_inputs():
+    response = run(skills=("sewing", "cooking"))
+    assert numbers_in(response["message"]) == {str(len(response["results"]))}
+    for card in response["results"]:
+        pressure = card["cost_pressure"]
+        if pressure["message"]:
+            assert numbers_in(pressure["message"]) == {str(round(pressure["pct_change"] * 100))}

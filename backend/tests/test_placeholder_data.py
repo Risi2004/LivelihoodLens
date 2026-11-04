@@ -112,3 +112,16 @@ def test_flour_and_sugar_rise_about_15_percent():
     assert price_change(prices, "wheat_flour", last) == pytest.approx(0.15, abs=0.02)
     assert price_change(prices, "sugar", last) == pytest.approx(0.15, abs=0.02)
     assert abs(price_change(prices, "rice", last)) < 0.03
+
+
+# On day 14 the last-14-days window holds no prices, so there is nothing to compare (rule 7).
+@pytest.mark.parametrize("days_after_last_price", range(config.PRESSURE_RECENT_DAYS))
+def test_bakery_warning_holds_while_recent_prices_exist(days_after_last_price):
+    from datetime import date, timedelta
+
+    from app.engine.pressure import cost_pressure
+
+    today = date.fromisoformat(sources["prices"]["last_date"]) + timedelta(days=days_after_last_price)
+    result = cost_pressure({"price_inputs": "wheat_flour|sugar|egg"}, pd.read_csv(config.PRICES_CSV), today)
+    assert result["warning"] is True
+    assert result["pct_change"] == pytest.approx(0.10, abs=0.06)

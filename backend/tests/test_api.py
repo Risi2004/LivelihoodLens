@@ -176,3 +176,24 @@ def test_cors_reads_production_origin_from_env(monkeypatch):
     with client_for() as client:
         response = client.get("/health", headers={"Origin": "https://lens.example.com"})
     assert response.headers["access-control-allow-origin"] == "https://lens.example.com"
+
+
+def test_committed_data_answers_every_district():
+    """End to end on the committed data files, so every official district gets a real answer."""
+    from datetime import date, timedelta
+
+    from app.data_loader import load_all
+
+    data = load_all()
+    today = date.fromisoformat(data.sources["prices"]["last_date"]) + timedelta(days=1)
+    with TestClient(create_app(load_store=lambda: data, today=lambda: today)) as client:
+        assert len(client.get("/districts").json()) == len(config.DISTRICTS)
+        assert len(client.get("/categories").json()) == len(data.categories)
+        assert client.get("/gaps", params={"category_id": "tailoring_clothing"}).status_code == 200
+        for district in config.DISTRICTS:
+            response = client.post("/recommend", json={**GALLE_BODY, "district": district})
+            assert response.status_code == 200, district
+            body = response.json()
+            assert body["status"] in ("ok", "insufficient_data")
+            if body["status"] == "ok":
+                assert body["disclaimer"] == config.DISCLAIMER

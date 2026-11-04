@@ -20,7 +20,7 @@ def _suggestions(store, district, adequate):
     return sorted(name for name in names if name in adequate)
 
 
-def _refusal(store, district, coverage_row, failed_rule, threshold, suggestions, freshness):
+def _refusal(district, coverage_row, failed_rule, threshold, suggestions, freshness):
     reason = insufficient_data_reason(
         district,
         failed_rule,
@@ -102,12 +102,13 @@ def recommend(store, district, budget, skills, hours, today):
 
     freshness = source_freshness(store.sources, today)
     adequate = _adequate_districts(coverage)
+    # Staleness applies to every district, so no neighbour would rank either.
+    too_stale = data_too_stale(freshness)
     if coverage_row["coverage_flag"] != "adequate":
-        suggestions = _suggestions(store, district, adequate)
-        return _refusal(store, district, coverage_row, coverage_row["failed_rule"], coverage_row["threshold"], suggestions, freshness)
-    if data_too_stale(freshness):
-        # Staleness applies to every district, so no neighbour would rank either.
-        return _refusal(store, district, coverage_row, "stale_data", None, [], freshness)
+        suggestions = [] if too_stale else _suggestions(store, district, adequate)
+        return _refusal(district, coverage_row, coverage_row["failed_rule"], coverage_row["threshold"], suggestions, freshness)
+    if too_stale:
+        return _refusal(district, coverage_row, "stale_data", None, [], freshness)
 
     gap_table = compute_gap_table(store.supply, store.demand, adequate)
     gap_rows = gap_table[gap_table["district"] == district]
